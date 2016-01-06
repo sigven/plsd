@@ -1,8 +1,10 @@
 **About LScarisk.org**
 
-This website is based on results to be published in doi:10.1136/gutjnl-2015-309675. When published  online link to publication will appear here.
+This website is based on the following publication:
 
-Note that the number of PMS2 carriers included are insufficient for realiable conclusions. Risk estimates for PMS2 carriers should therefore be interpreted with caution.
+[Møller P, Seppälä T, Bernstein I, Holinski-Feder E, Sala P, Evans DG, Lindblom A, Macrae F, Blanco I, Sijmons R, Jeffries J, Vasen H, Burn J, Nakken S, Hovig E, Rødland EA, Tharmaratnam K, de Vos Tot Nederveen Cappel WH, Hill J, Wijnen J, Green K, Lalloo F, Sunde L, Mints M, Bertario L, Pineda M, Navarro M, Morak M, Renkonen-Sinisalo L, Frayling IM, Plazzer JP, Pylvanainen K, Sampson JR, Capella G, Mecklin JP, Möslein G; Mallorca Group (http://mallorca-group.eu) (2015). **Cancer incidence and survival in Lynch syndrome patients receiving colonoscopic and gynaecological surveillance: first report from the prospective Lynch syndrome database**. _Gut_. 2015 Dec 9.](http://www.ncbi.nlm.nih.gov/pubmed/26657901)
+
+Note that the number of PMS2 carriers included are insufficient for realiable conclusions. Risk estimates for PMS2 carriers should therefore be interpreted with caution. 
 
 <!--Due to the low penetrance of MSH6 before 50 years of age, few MSH6 carriers with cancer before 50 years of age were included. Calculated results on next cancer in patients of age less than 50 years should thus not be considered for MSH6 carriers.-->
 

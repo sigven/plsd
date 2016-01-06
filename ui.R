@@ -3,7 +3,7 @@ library(ggplot2)
 library(markdown)
 
 
-shinyUI(fluidPage(theme="bootstrap.united.css",
+shinyUI(fluidPage(theme="bootstrap.yeti.css",
                   tags$head(includeScript("google-analytics.js")),
                   navbarPage("Prospective Lynch Syndrome Database",
                              tabPanel("Carrier without cancer",

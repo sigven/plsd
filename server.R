@@ -5,7 +5,7 @@ library(plyr)
 library(dplyr)
 library(magrittr)
 
-load('ls_risk_data_final_v3.rda')
+load('ls_risk_data.rda')
 
 shinyServer(function(input, output, session){
 
