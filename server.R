@@ -5,7 +5,7 @@ library(plyr)
 library(dplyr)
 library(magrittr)
 
-load('ls_risk_data.rda')
+load('ls_risk_data_final_v3.rda')
 
 shinyServer(function(input, output, session){
 
@@ -19,14 +19,19 @@ shinyServer(function(input, output, session){
     })
  
     output$UI.Date <- renderText({
-        Commentary.Date <- paste0("<p style=\"font-size:80%\"><i>Last data update: 15 January 2015</i></p>")
+        Commentary.Date <- paste0("<p style=\"font-size:80%\"><i>Last data update: December 3rd 2015</i></p>")
         return(Commentary.Date)
     })
     output$Sex <- renderPrint({ input$Sex })
     output$ctype <- renderPrint({ input$ctype })
     output$Age <- renderPrint({ input$Age })
+    #gender <- 'male'
+    #if(input$Sex == 'FEMALE'){
+        #gender <- 'female'
+    #}
+    
     output$text1 <- renderText({
-        paste('<div style=\"position:relative; left:6em\">Calculated cumulative risk for patient aged ',input$Age, 'today:</div>')
+        paste('<div style=\"position:relative; left:0em\">Calculated cumulative cancer risk for',tolower(input$Sex),'carrier of <i>',paste0('path_',input$genecarrier), '</i> with a current age of',input$Age, ':</div>')
     })
     
   output$plot_incidence_gene <- renderPlot({
@@ -44,32 +49,34 @@ shinyServer(function(input, output, session){
       }
       df$SEXGENE <- paste(df$Sex,df$Gene, sep=" - ")
       #cancer_type <- 'Any cancer type'
-      cancer_type <- paste('Any cancer type',input$Sex,input$genecarrier,sep = ' - ')
+      cancer_type <- paste('Any cancer type',tolower(input$Sex),sep = ' - ')
       if(input$ctype == 'CRC'){
           #cancer_type <- 'Colorectal cancer'
-          cancer_type <- paste('Colorectal cancer',input$Sex,input$genecarrier,sep = ' - ')
+          cancer_type <- paste('Colorectal cancer',tolower(input$Sex),sep = ' - ')
       }
-      if(input$ctype == 'OVARY'){
+      if(input$ctype == 'OVARIAN'){
           #cancer_type <- 'Ovarian cancer'
-          cancer_type <- paste('Ovarian cancer',input$Sex,input$genecarrier,sep = ' - ')
+          cancer_type <- paste('Ovarian cancer',tolower(input$Sex),sep = ' - ')
           
       }
       if(input$ctype == 'UGI'){
           #cancer_type <- 'Gastric/small intestine/biliary tract/pancreas cancer'
-          cancer_type <- paste('Gastric/small intestine/biliary tract/pancreas cancer',input$Sex,input$genecarrier,sep = ' - ')
+          cancer_type <- paste('Gastric/small intestine/biliary tract/pancreas cancer',tolower(input$Sex),sep = ' - ')
       }
       if(input$ctype == 'URO'){
           #cancer_type <- 'Urine bladder/kidney/ureter cancer'
-          cancer_type <- paste('Urine bladder/kidney/ureter cancer',input$Sex,input$genecarrier,sep = ' - ')
+          cancer_type <- paste('Urine bladder/kidney/ureter cancer',tolower(input$Sex),sep = ' - ')
       }
       if(input$ctype == 'END'){
-          cancer_type <- paste('Endometrial cancer',input$Sex,input$genecarrier,sep = ' - ')
+          cancer_type <- paste('Endometrial cancer',tolower(input$Sex),sep = ' - ')
       }
+      
+      pathogenic_variant <- paste0('path_',input$genecarrier)
     
       p <- ggplot(df, aes(x=Age,y=cum_risk_percent_dynamic,group=SEXGENE,colour=SEXGENE)) +
           geom_line(size=1) + geom_point(size=3) +
           theme_classic() +
-          ggtitle(cancer_type) + 
+          ggtitle(bquote(atop(bold(.(cancer_type)), italic(.(pathogenic_variant))))) + 
           scale_x_continuous(breaks=seq(25,70,5),limits=c(25,70)) +
           scale_y_continuous(breaks=seq(0,100,10),limits=c(0,100)) +
           scale_color_brewer(palette='Dark2') +
@@ -108,8 +115,10 @@ shinyServer(function(input, output, session){
       df <- as.data.frame(dplyr::filter(df, Age == 25 | Age == 40 | Age == 50 | Age == 60 | Age == 70))
       
       df <- df %>% dplyr::select(Age,Sex,Gene,cum_risk_percent_dynamic)
+      df$Gene <- paste0('path_',df$Gene)
+      df <- df %>% dplyr::select(Age,cum_risk_percent_dynamic)
       
-      colnames(df) <- c('Age','Sex','Gene','Risk (%)')      
+      colnames(df) <- c('Age','Risk (%)')      
       df
       
   },include.rownames=F)

@@ -4,34 +4,40 @@ library(markdown)
 
 
 shinyUI(fluidPage(theme="bootstrap.united.css",
-                  navbarPage("Lynch Syndrome Prospective Database",
-                             tabPanel("Mutation carrier without cancer",
+                  tags$head(includeScript("google-analytics.js")),
+                  navbarPage("Prospective Lynch Syndrome Database",
+                             tabPanel("Carrier without cancer",
                                       sidebarLayout(
                                           sidebarPanel(    
-                                              HTML("<p></p>"),
-                                              selectInput("ctype", label = "Cancer type", 
-                                                          list("Any cancer type" = "PANCANCER", "Colorectal cancer" = "CRC", "Ovarian cancer" = "OVARY", "Endometrial cancer" = "END","Urine bladder/kidney/ureter cancer" = "URO", "Gastric/small intestine/biliary tract/pancreas cancer" = "UGI")
+                                              HTML("<p><b>Calculation of cumulative cancer risk</b></p><br>"),
+                                              selectInput("ctype", label = em("Cancer type"), 
+                                                          list("Any cancer type" = "PANCANCER", "Colorectal cancer" = "CRC", "Ovarian cancer" = "OVARIAN", "Endometrial cancer" = "END","Urine bladder/kidney/ureter cancer" = "URO", "Gastric/small intestine/biliary tract/pancreas cancer" = "UGI")
                                               ),
                                               
-                                              sliderInput("Age", label = "Age",
+                                              sliderInput("Age", label = em("Current age"),
                                                           min = 25, max = 70, value = 25),
                                              
-                                              selectInput("Sex", label="Sex",
+                                              selectInput("Sex", label=em("Gender"),
                                                     list("Female" = "FEMALE", "Male" = "MALE")
                                              ),
-                                                selectInput("genecarrier", label = "Gene", 
-                                                          list("MLH1" = "MLH1", "MSH2" = "MSH2", "MSH6" = "MSH6", "PMS2"="PMS2")
-                                                 )
+                                             HTML('<i>'),
+                                                selectInput("genecarrier", label = "Genetic variant", 
+                                                          list("path_MLH1" = "MLH1", "path_MSH2" = "MSH2", "path_MSH6" = "MSH6", "path_PMS2"="PMS2")
+                                                 ),
+                                             HTML('</i>')
                                           ),
                                           mainPanel(
+                                                  #tags$head(HTML("<script type='text/javascript' src='js/google.js'></script>")),
                                                   #tabsetPanel(
                                                       #HTML('<br><br>'),
                                                       #tabPanel("Plot", plotOutput("plot_incidence_gene")),
                                                       #tabPanel("Table",tableOutput("table_ALL")), type="tabs"
                                                   #),
-                                                  htmlOutput('text1'),
+                                                  
                                                   plotOutput("plot_incidence_gene"),
                                                   HTML('<div style=\"position:relative; left:7em\">'),
+                                                  htmlOutput('text1'),
+                                                  HTML('<br>'),
                                                   tableOutput('table_ALL'),
                                                   HTML('</div>'),
                                               
@@ -57,7 +63,7 @@ shinyUI(fluidPage(theme="bootstrap.united.css",
                                           sidebarPanel(    
                                               HTML("<p>"),
                                               strong("Recent news"),
-                                              HTML("</p><br>[ 01-21-2015 ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>LScarisk.org launched</i>") 
+                                              HTML("</p><br>[ Dec-08-2015 ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>LScarisk.org launched</i>") 
                                           ),
                                           mainPanel(
                                               includeMarkdown('about.md')

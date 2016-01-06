@@ -1,4 +1,5 @@
-# plsd
-Prospective lynch syndrome database - interactive web application developed using Shiny
+# Prospective Lynch Syndrome Database
 
-Site can be accessed here: https://sigven78.shinyapps.io/lynch_risk/
+An interactive web application for calculation of cancer risk for Lynch syndrome carriers
+
+Site can be accessed here: http://lscarisk.org
