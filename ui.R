@@ -98,7 +98,8 @@ shinyUI(fluidPage(theme="bootstrap.united.css",
                                           sidebarPanel(    
                                               HTML("<p>"),
                                               strong("Recent news"),
-                                              HTML("</p><br>[ Dec-08-2015 ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>LScarisk.org launched</i>") 
+                                              HTML("</p><br>[ Dec-08-2015 ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>LScarisk.org launched</i>"),
+                                              HTML("<br>[ Jun-03-2016 ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Risk estimates for subsequenct cancers have been added</i>")
                                           ),
                                           mainPanel(
                                               includeMarkdown('about.md')
