@@ -1,5 +1,6 @@
-# Prospective Lynch Syndrome Database
+# Prospective Lynch Syndrome Database (PLSD)
 
-An interactive web application for calculation of cancer risk for Lynch syndrome carriers
+* an interactive web application for assessment of individualized cancer risk in Lynch syndrome carriers
+* application has been developed in [Shiny - a web application framework for R](https://shiny.rstudio.com)
 
-Site can be accessed here: http://lscarisk.org
+Website can be accessed here: http://lscarisk.org
